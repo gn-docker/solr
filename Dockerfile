@@ -25,5 +25,5 @@ EXPOSE 8983
 
 WORKDIR /opt/solr/example
 
-CMD [ "/bin/bash", "-c", "/usr/bin/java -Xmx4g -Dsolr.solr.home=/opt/solr/example/solr -jar start.jar"]
+CMD [ "/bin/bash", "-c", "/usr/bin/java -Xmx30g -Dsolr.solr.home=/opt/solr/example/solr -jar start.jar"]
 
