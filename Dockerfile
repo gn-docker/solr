@@ -9,7 +9,7 @@ ENV SOLR_DOWNLOAD http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/$SOLR
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get -y install git lsof wget vim curl procps \
+    apt-get -y install git lsof wget vim-nox curl procps \
       openjdk-7-jre-headless && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -31,5 +31,5 @@ RUN wget -nv --output-document=/opt/$SOLR.tgz $SOLR_DOWNLOAD && \
 VOLUME /opt/solr
 
 EXPOSE 8983
-CMD [ "java", "-Xmx64g", "-Dsolr.solr.home=/opt/solr", "-jar example/start.jar", ">", "/dev/null", "2>&1"]
+CMD [ "/usr/bin/java", "-Xmx64g", "-Dsolr.solr.home=/opt/solr", "-jar", "example/start.jar", ">", "/dev/null", "2>&1"]
 
