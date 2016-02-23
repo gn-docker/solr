@@ -17,7 +17,9 @@ RUN apt-get update && \
 RUN wget -nv --output-document=/opt/$SOLR.tgz $SOLR_DOWNLOAD && \
   tar -C /opt --extract --file /opt/$SOLR.tgz && \
   rm /opt/$SOLR.tgz && \
-  mv /opt/$SOLR /opt/solr
+  mv /opt/$SOLR /opt/solr && \
+  rm -rf /opt/solr/example/solr && \
+  mv /app/solr/multicore /opt/solr/example/solr
 
 EXPOSE 8983
 
