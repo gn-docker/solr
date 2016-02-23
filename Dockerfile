@@ -18,18 +18,10 @@ RUN wget -nv --output-document=/opt/$SOLR.tgz $SOLR_DOWNLOAD && \
   tar -C /opt --extract --file /opt/$SOLR.tgz && \
   rm /opt/$SOLR.tgz && \
   mv /opt/$SOLR /opt/solr
-  # git clone https://github.com/EOL/eol.git && \
-  # cd eol && git checkout docker && cd .. && \
-  # mkdir eol/solr/example && \
-  # mkdir eol/solr/example/data && \
-  # mv eol/solr/solr/solr.xml /opt/solr && \
-  # mv eol/solr/solr/cores /opt/solr && \
-  # apt-get -y purge git && \
-  # apt-get -y autoremove && \
-  # rm -rf eol
-
-VOLUME /opt/solr
 
 EXPOSE 8983
-CMD [ "/usr/bin/java", "-Xmx64g", "-Dsolr.solr.home=/opt/solr", "-jar", "example/start.jar", ">", "/dev/null", "2>&1"]
+
+WORKDIR /opt/solr/example
+
+CMD [ "/bin/bash", "-c", "/usr/bin/java -Xmx4g -Dsolr.solr.home=/opt/solr/example -jar start.jar"]
 
